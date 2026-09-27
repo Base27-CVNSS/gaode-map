@@ -68,19 +68,19 @@ const FALLBACK_START_POINT: NaviPoint = {
   longitude: 116.39747,
 };
 const ROUTE_SCENE_OPTIONS: Array<{ key: RouteScene; label: string; icon: keyof typeof FontAwesome.glyphMap }> = [
-  { key: "drive", label: "驾车", icon: "car" },
-  { key: "ride", label: "骑行", icon: "bicycle" },
-  { key: "walk", label: "步行", icon: "male" },
+  { key: "drive", label: "Ô tô", icon: "car" },
+  { key: "ride", label: "Xe đạp", icon: "bicycle" },
+  { key: "walk", label: "Đi bộ", icon: "male" },
 ];
 
 function getRouteSceneLabel(scene: RouteScene): string {
   if (scene === "ride") {
-    return "骑行";
+    return "Xe đạp";
   }
   if (scene === "walk") {
-    return "步行";
+    return "Đi bộ";
   }
-  return "驾车";
+  return "Ô tô";
 }
 
 function createWaypointField(index: number): WaypointField {
@@ -207,38 +207,38 @@ function buildRouteLabel(
   scene: RouteScene
 ): string {
   if (index === mainPathIndex) {
-    return "推荐";
+    return "Khuyến nghị";
   }
   if (scene !== "drive") {
     if (index === shortestDistanceIndex) {
-      return "距离短";
+      return "Quãng đường ngắn";
     }
-    return `备选${index + 1}`;
+    return `Phương án ${index + 1}`;
   }
   if (index === fewestLightsIndex) {
-    return "红绿灯少";
+    return "Ít đèn tín hiệu";
   }
   if (index === shortestDistanceIndex) {
-    return "距离短";
+    return "Quãng đường ngắn";
   }
   if ((route.tollCost ?? 0) === 0) {
-    return "少收费";
+    return "Ít phí";
   }
-  return `方案 ${index + 1}`;
+  return `Phương án ${index + 1}`;
 }
 
 function buildMarkerText(kind: "from" | "to" | "waypoint", index?: number): string {
   if (kind === "from") {
-    return "起";
+    return "Đ";
   }
   if (kind === "to") {
-    return "终";
+    return "C";
   }
   return String((index ?? 0) + 1);
 }
 
 function resolveTipTitle(tip: InputTip): string {
-  return tip.name?.trim() || tip.address?.trim() || "未命名地点";
+  return tip.name?.trim() || tip.address?.trim() || "Địa điểm chưa đặt tên";
 }
 
 function resolveTipSubtitle(tip: InputTip): string {
@@ -438,7 +438,7 @@ export default function RoutePickerExampleScreen() {
   const [planning, setPlanning] = React.useState(false);
   const [tipLoading, setTipLoading] = React.useState(false);
   const [city, setCity] = React.useState(DEFAULT_CITY);
-  const [statusText, setStatusText] = React.useState("正在初始化地图与搜索能力");
+  const [statusText, setStatusText] = React.useState("Đang khởi tạo bản đồ và tìm kiếm");
   const [fromInput, setFromInput] = React.useState("");
   const [fromSelection, setFromSelection] = React.useState<RouteFieldValue | null>(null);
   const [toInput, setToInput] = React.useState("");
@@ -775,15 +775,15 @@ export default function RoutePickerExampleScreen() {
           setShowNaviView(false);
           if (
             Platform.OS === "android" &&
-            message.includes("高德 SDK 未接受该路径组")
+            message.includes("AMap SDK không chấp nhận nhóm tuyến này")
           ) {
             Alert.alert(
-              "Android 当前不支持这里的模拟独立导航",
-              "这条独立路径组在当前高德 Android SDK 下会拒绝模拟导航启动。你可以先切回 GPS 导航验证自定义路线选择页。"
+              "Android hiện chưa hỗ trợ dẫn đường độc lập mô phỏng tại đây",
+              "Nhóm tuyến độc lập này bị AMap Android SDK hiện tại từ chối khi khởi động dẫn đường mô phỏng. Hãy chuyển về GPS navigation để kiểm tra trang chọn tuyến tùy chỉnh."
             );
             return;
           }
-          Alert.alert("启动导航失败", message);
+          Alert.alert("Không thể khởi động dẫn đường", message);
         });
     }, 360);
 
@@ -809,9 +809,9 @@ export default function RoutePickerExampleScreen() {
         const demoScenario = buildDemoScenario(currentLocation);
 
         const [fromMeta, waypointMeta, toMeta] = await Promise.all([
-          resolvePointPresentation(currentLocation, "我的位置"),
-          resolvePointPresentation(demoScenario.waypoints[0], "演示途经点"),
-          resolvePointPresentation(demoScenario.to, "演示终点"),
+          resolvePointPresentation(currentLocation, "Vị trí của tôi"),
+          resolvePointPresentation(demoScenario.waypoints[0], "Điểm trung gian mẫu"),
+          resolvePointPresentation(demoScenario.to, "演示C点"),
         ]);
 
         setCity(fromMeta.city || DEFAULT_CITY);
@@ -833,13 +833,13 @@ export default function RoutePickerExampleScreen() {
         waypointSeedRef.current = 2;
         setStatusText(
           currentLocation === FALLBACK_START_POINT
-            ? "定位较慢，已切到北京默认示例点位。你也可以手动选起点、终点和途经点后直接规划。"
-            : "已填入一条演示路线。你可以直接规划，也可以替换为自己的起点、终点和多个途经点。"
+            ? "定位较慢，已切到北京默认示例点位。你也可以手动选Đ点、C点和Trung gian点后直接规划。"
+            : "已填入一条演示路线。你可以直接规划，也可以替换为自己的Đ点、C点和多个Trung gian点。"
         );
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        setStatusText(`初始化失败: ${message}`);
-        Alert.alert("初始化失败", message);
+        setStatusText(`Khởi tạo thất bại: ${message}`);
+        Alert.alert("Khởi tạo thất bại", message);
       } finally {
         setBootstrapping(false);
       }
@@ -882,7 +882,7 @@ export default function RoutePickerExampleScreen() {
     setToInput(fromInput);
     setToSelection(fromSelection);
     void resetRoutePreview();
-    setStatusText("已交换起点和终点。重新规划后会刷新候选路线。");
+    setStatusText("已交换Đ点和C点。重新规划后会刷新候选路线。");
   }, [fromInput, fromSelection, resetRoutePreview, toInput, toSelection]);
 
   const handleRouteSceneChange = React.useCallback(
@@ -893,7 +893,7 @@ export default function RoutePickerExampleScreen() {
       setShowNaviView(false);
       void resetRoutePreview();
       setRouteScene(nextScene);
-      setStatusText(`已切换到${getRouteSceneLabel(nextScene)}模式，请重新规划路线。`);
+      setStatusText(`Đã chuyển sang chế độ ${getRouteSceneLabel(nextScene)}. Hãy lập tuyến lại.`);
     },
     [resetRoutePreview, routeScene]
   );
@@ -940,7 +940,7 @@ export default function RoutePickerExampleScreen() {
         poiId: tip.id,
         point: tip.location,
       });
-      setStatusText(`已选中 ${resolveTipTitle(tip)}，可以重新规划路线。`);
+      setStatusText(`Đã chọn ${resolveTipTitle(tip)}. Bạn có thể lập tuyến lại.`);
     },
     [activeFieldId, applySelectedField]
   );
@@ -949,16 +949,16 @@ export default function RoutePickerExampleScreen() {
     try {
       setBootstrapping(true);
       const currentLocation = await ensureDemoSdkReady();
-      const presentation = await resolvePointPresentation(currentLocation, "我的位置");
+      const presentation = await resolvePointPresentation(currentLocation, "Vị trí của tôi");
       setFromSelection(createFieldValue(currentLocation, presentation.label, presentation.address));
       setFromInput(presentation.label);
       void resetRoutePreview();
       void focusSelectedPoint(currentLocation);
       setCity(presentation.city || city);
-      setStatusText("起点已更新为当前位置。");
+      setStatusText("Đ点已更新为当前位置。");
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      Alert.alert("定位失败", message);
+      Alert.alert("Không lấy được vị trí", message);
     } finally {
       setBootstrapping(false);
     }
@@ -967,7 +967,7 @@ export default function RoutePickerExampleScreen() {
   const handleAddWaypoint = React.useCallback(() => {
     if (routeResult) {
       void resetRoutePreview();
-      setStatusText("已添加途经点。请选中新的途经点后重新规划路线。");
+      setStatusText("Đã thêm điểm trung gian. Hãy chọn điểm mới rồi lập tuyến lại.");
     }
 
     setWaypoints((current) => {
@@ -991,7 +991,7 @@ export default function RoutePickerExampleScreen() {
 
   const planRoutes = React.useCallback(async () => {
     if (!fromSelection?.point || !toSelection?.point) {
-      Alert.alert("信息不完整", "请先选择起点和终点。");
+      Alert.alert("Thiếu thông tin", "请先选择Đ点和C点。");
       return;
     }
 
@@ -999,7 +999,7 @@ export default function RoutePickerExampleScreen() {
       (item) => item.input.trim().length > 0 && !item.selected?.point
     );
     if (typedButUnresolvedWaypoint) {
-      Alert.alert("途经点未确认", "请从搜索建议中选择途经点，或清空这一行。");
+      Alert.alert("Điểm trung gian chưa được xác nhận", "Hãy chọn điểm trung gian từ gợi ý tìm kiếm hoặc xóa dòng này.");
       return;
     }
 
@@ -1051,17 +1051,17 @@ export default function RoutePickerExampleScreen() {
       setSelectedRouteIndex(result.mainPathIndex);
       const sceneSpecificHint =
         Platform.OS === "android" && routeScene !== "drive"
-            ? "Android 开始导航时会切到 TravelView 兼容模式。"
+            ? "Khi bắt đầu dẫn đường trên Android, hệ thống sẽ chuyển sang chế độ tương thích TravelView."
             : "";
       setStatusText(
         result.count > 1
-          ? `已生成 ${result.count} 条${routeSceneLabel}候选路线。底部卡片切换的是实际可导航路线。${sceneSpecificHint}`
-          : `当前只返回 1 条${routeSceneLabel}路线。通常是因为路径约束较强或 SDK 没给出更多备选。${sceneSpecificHint}`
+          ? `Đã tạo ${result.count} tuyến ${routeSceneLabel}. Các thẻ bên dưới chuyển giữa những tuyến thực tế có thể dẫn đường. ${sceneSpecificHint}`
+          : `Hiện chỉ có 1 tuyến ${routeSceneLabel}, thường do ràng buộc tuyến chặt hoặc SDK không trả thêm phương án. ${sceneSpecificHint}`
       );
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      setStatusText(`路线规划失败: ${message}`);
-      Alert.alert("路线规划失败", message);
+      setStatusText(`Lập tuyến thất bại: ${message}`);
+      Alert.alert("Lập tuyến thất bại", message);
     } finally {
       setPlanning(false);
     }
@@ -1095,7 +1095,7 @@ export default function RoutePickerExampleScreen() {
     .map((item, index) => ({
       latitude: item.point.latitude,
       longitude: item.point.longitude,
-      title: `途经${index + 1}`,
+      title: `Điểm trung gian ${index + 1}`,
     }));
   const selectedWaypointCount = selectedWaypointMarkers.length;
   const previewMarkerRevision = routeResult?.token ?? "draft";
@@ -1143,7 +1143,7 @@ export default function RoutePickerExampleScreen() {
           void stopNavigation();
         }}
         onCalculateRouteFailure={(event) => {
-          Alert.alert("导航失败", event.nativeEvent.error || "未知错误");
+          Alert.alert("Dẫn đường thất bại", event.nativeEvent.error || "Lỗi không xác định");
           void stopNavigation();
         }}
       />
@@ -1226,7 +1226,7 @@ export default function RoutePickerExampleScreen() {
               <View style={styles.waypointBadge}>
                 <View style={styles.waypointBadgeBody}>
                   <Text style={styles.waypointBadgeText}>
-                    {selectedWaypointCount > 1 ? `途${index + 1}` : "途经"}
+                    {selectedWaypointCount > 1 ? `TG${index + 1}` : "Trung gian"}
                   </Text>
                 </View>
               </View>
@@ -1268,9 +1268,9 @@ export default function RoutePickerExampleScreen() {
               <View style={styles.formCardHeader}>
                 <Pressable style={styles.inlineBackButton} onPress={() => router.back()} hitSlop={8}>
                   <FontAwesome name="angle-left" size={18} color="#0f3c83" />
-                  <Text style={styles.inlineBackText}>返回</Text>
+                  <Text style={styles.inlineBackText}>Quay lại</Text>
                 </Pressable>
-              <Text style={styles.formTitle}>自定义路线选择</Text>
+              <Text style={styles.formTitle}>Chọn tuyến tùy chỉnh</Text>
                 <Pressable style={styles.swapButton} onPress={handleSwap}>
                   <FontAwesome name="exchange" size={14} color="#0f3c83" />
                 </Pressable>
@@ -1309,7 +1309,7 @@ export default function RoutePickerExampleScreen() {
                   }
                 }}
                 onFocus={() => setActiveFieldId("from")}
-                placeholder="输入起点"
+                placeholder="输入Đ点"
                 placeholderTextColor="#8aa0b8"
                 style={styles.input}
               />
@@ -1325,7 +1325,7 @@ export default function RoutePickerExampleScreen() {
                   value={waypoint.input}
                   onChangeText={(value) => setWaypointInput(waypoint.key, value)}
                   onFocus={() => setActiveFieldId(waypoint.key)}
-                  placeholder={`输入途经点 ${index + 1}`}
+                  placeholder={`输入Trung gian点 ${index + 1}`}
                   placeholderTextColor="#8aa0b8"
                   style={styles.input}
                 />
@@ -1349,7 +1349,7 @@ export default function RoutePickerExampleScreen() {
                   }
                 }}
                 onFocus={() => setActiveFieldId("to")}
-                placeholder="输入终点"
+                placeholder="输入C点"
                 placeholderTextColor="#8aa0b8"
                 style={styles.input}
               />
@@ -1362,7 +1362,7 @@ export default function RoutePickerExampleScreen() {
                 <TextInput
                   value={city}
                   onChangeText={setCity}
-                  placeholder="城市"
+                  placeholder="Thành phố"
                   placeholderTextColor="#7b91a7"
                   style={styles.cityInput}
                 />
@@ -1377,7 +1377,7 @@ export default function RoutePickerExampleScreen() {
                 disabled={waypoints.length >= MAX_WAYPOINTS}
               >
                 <FontAwesome name="plus" size={12} color="#0f3c83" />
-                <Text style={styles.secondaryActionText}>途经点</Text>
+                <Text style={styles.secondaryActionText}>Trung gian点</Text>
               </Pressable>
 
               <Pressable
@@ -1387,7 +1387,7 @@ export default function RoutePickerExampleScreen() {
               >
                 <FontAwesome name="road" size={13} color="#ffffff" />
                 <Text style={styles.primaryActionText}>
-                  {planning ? "规划中" : "规划路线"}
+                  {planning ? "Đang lập tuyến" : "Lập tuyến"}
                 </Text>
               </Pressable>
             </View>
@@ -1426,7 +1426,7 @@ export default function RoutePickerExampleScreen() {
                 </ScrollView>
               ) : (
                 <Text style={styles.emptySuggestionText}>
-                  {tipLoading ? "正在获取建议..." : "继续输入 2 个以上字符，或换一个关键词。"}
+                  {tipLoading ? "Đang tải gợi ý..." : "Nhập thêm ít nhất 2 ký tự hoặc thử từ khóa khác."}
                 </Text>
               )}
             </View>
@@ -1516,9 +1516,9 @@ export default function RoutePickerExampleScreen() {
               </View>
             ) : (
               <View style={styles.routePlaceholder}>
-                <Text style={styles.routePlaceholderTitle}>候选路线会显示在这里</Text>
+                <Text style={styles.routePlaceholderTitle}>Các tuyến ứng viên sẽ hiển thị tại đây</Text>
                 <Text style={styles.routePlaceholderBody}>
-                  当前页面支持起点、终点和多个途经点输入。规划完成后，下方会展示最多 3 条可切换路线。
+                  当前页面支持Đ点、C点和多个Trung gian点输入。规划完成后，下方会展示最多 3 条可切换路线。
                 </Text>
               </View>
             )}
@@ -1533,28 +1533,28 @@ export default function RoutePickerExampleScreen() {
                     shortestDistanceIndex,
                     fewestLightsIndex,
                     routeScene
-                  )}` : "未开始规划"}
+                  )}` : "Chưa lập tuyến"}
                 </Text>
                 <Text style={styles.routeMetaText}>
                   {selectedRoute
                     ? routeScene === "drive"
                       ? [
                           selectedRoute.trafficLightCount != null
-                            ? `红绿灯 ${selectedRoute.trafficLightCount} 个`
+                            ? `${selectedRoute.trafficLightCount} đèn tín hiệu`
                             : null,
                           selectedRoute.tollCost != null
-                            ? `收费约 ${selectedRoute.tollCost.toFixed(0)} 元`
+                            ? `Phí khoảng ${selectedRoute.tollCost.toFixed(0)} CNY`
                             : null,
                         ]
                           .filter(Boolean)
-                          .join(" · ") || "该路线暂无额外摘要"
+                          .join(" · ") || "Chưa có tóm tắt bổ sung cho tuyến này"
                       : [
-                          `${routeSceneLabel}独立路径预览`,
+                          `Xem trước tuyến ${routeSceneLabel} độc lập`,
                           supportsEmbeddedNavigation
-                            ? "可继续进入当前页嵌入式导航"
-                            : "当前页先支持预览，导航链路待补齐",
+                            ? "Có thể tiếp tục vào dẫn đường nhúng ngay trên trang"
+                            : "Trang hiện hỗ trợ xem trước; luồng dẫn đường sẽ được hoàn thiện sau",
                         ].join(" · ")
-                    : "请先规划路线，然后选择一条方案开始导航。"}
+                    : "请先Lập tuyến，然后选择一条方案Bắt đầu dẫn đường。"}
                 </Text>
               </View>
 
@@ -1568,7 +1568,7 @@ export default function RoutePickerExampleScreen() {
                 disabled={!selectedRoute}
               >
                 <Text style={styles.startButtonText}>
-                  {selectedRoute && !supportsEmbeddedNavigation ? "仅预览" : "开始导航"}
+                  {selectedRoute && !supportsEmbeddedNavigation ? "Chỉ xem trước" : "Bắt đầu dẫn đường"}
                 </Text>
               </Pressable>
             </View>
