@@ -17,6 +17,7 @@ amapro keeps its API intentionally small while forwarding data, layers and runti
 | remote GeoJSON source | `loadGeoJSON` with injectable fetcher |
 | view animation / flyover | `playCameraTimeline` + `CameraTimelineController` |
 | thin public wrapper | scene API re-exported from core index |
+| core/navigation parity | same scene contract exported by navigation map layer |
 
 ## Deliberately not copied
 
