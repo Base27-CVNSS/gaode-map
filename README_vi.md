@@ -93,6 +93,8 @@ Lấy cảm hứng kiến trúc từ `helgasoft/amapro`, core hiện có thêm l
 - `LayerGroup`: bật/tắt một nhóm overlay và giới hạn theo zoom.
 - `MapCommandProxy`: queue lệnh camera/map trước khi MapView sẵn sàng rồi chạy tuần tự khi attach ref.
 - `flattenGeoJSON()` và `collectGeoJSONPositions()`: chuẩn hóa dữ liệu GIS trước khi đi xuống native engine.
+- `loadGeoJSON()`: tải GeoJSON từ URL với fetcher tùy biến cho proxy/cache/offline gateway.
+- `playCameraTimeline()`: camera flyover theo chuỗi keyframe, lấy ý tưởng từ Loca view animation nhưng chạy qua MapView native.
 
 Xem [GeoJSON Scene & Map Command Proxy](./website/docs/vi/guide/geojson-scene.md).
 
