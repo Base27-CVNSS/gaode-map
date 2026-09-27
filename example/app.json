@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "expo-gaode-map-example",
+    "name": "AMap Demo Việt Nam",
     "slug": "expo-gaode-map-example",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -58,15 +58,15 @@
           "iosKey": "dce6256823267916825743c01fedc375",
           "androidKey": "db755ae42443bcdff6a796409f6860f9",
           "enableLocation": true,
-          "locationDescription": "我们需要访问您的位置信息以提供地图服务",
+          "locationDescription": "Ứng dụng cần quyền truy cập vị trí để cung cấp dịch vụ bản đồ và định vị.",
           "enableBackgroundLocation": false
         }
       ],
       [
         "expo-media-library",
         {
-          "photosPermission": "我们需要访问您的相册以保存地图截图。",
-          "savePhotosPermission": "我们需要保存图片到您的相册。",
+          "photosPermission": "Ứng dụng cần quyền truy cập thư viện ảnh để lưu ảnh chụp bản đồ.",
+          "savePhotosPermission": "Ứng dụng cần quyền lưu ảnh vào thư viện của bạn.",
           "isAccessMediaLocationEnabled": true
         }
       ],
