@@ -131,6 +131,15 @@ await playCameraTimeline(proxy, [
 
 Có thể dùng `CameraTimelineController` để dừng các keyframe tiếp theo. Animation native đang chạy không bị cắt giữa chừng vì `MapView` hiện chưa có API cancel camera animation.
 
+## Core và Navigation dùng cùng contract
+
+Các API scene được xuất từ cả:
+
+- `expo-gaode-map`
+- `expo-gaode-map-navigation`
+
+Điều này quan trọng vì hai package native **không cài đồng thời**. Dự án có dẫn đường vẫn dùng cùng tên API và cùng cấu trúc GeoJSON/proxy/flyover, không phải viết lại business logic khi chuyển từ core sang navigation.
+
 ## Roadmap lấy từ bài học amapro
 
 amapro còn minh họa TileLayer, WMS/WMTS, ImageLayer, MassMarks, CanvasLayer và Loca 3D như PolygonLayer, ScatterLayer, PulseLinkLayer. Với gaode-map, các phần này sẽ đi theo adapter riêng thay vì nhồi vào native core:
