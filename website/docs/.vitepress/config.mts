@@ -28,22 +28,21 @@ function removeHtmlExtension(url: string): string {
 }
 
 function resolveAlternateLinks(routePath: string): Array<{ lang: string; url: string }> {
-  if (routePath.startsWith('/en/')) {
-    const zhPath = routePath.replace(/^\/en/, '') || '/'
-
-    return [
-      { lang: 'en', url: resolveCanonicalUrl(routePath) },
-      { lang: 'zh-CN', url: resolveCanonicalUrl(zhPath) },
-      { lang: 'x-default', url: resolveCanonicalUrl(zhPath) },
-    ]
-  }
-
-  const enPath = routePath === '/' ? '/en/' : `/en${routePath}`
+  const isEnglish = routePath.startsWith('/en/')
+  const isVietnamese = routePath.startsWith('/vi/')
+  const basePath = isEnglish
+    ? routePath.replace(/^\/en/, '') || '/'
+    : isVietnamese
+      ? routePath.replace(/^\/vi/, '') || '/'
+      : routePath
+  const enPath = basePath === '/' ? '/en/' : `/en${basePath}`
+  const viPath = basePath === '/' ? '/vi/' : `/vi${basePath}`
 
   return [
-    { lang: 'zh-CN', url: resolveCanonicalUrl(routePath) },
+    { lang: 'zh-CN', url: resolveCanonicalUrl(basePath) },
     { lang: 'en', url: resolveCanonicalUrl(enPath) },
-    { lang: 'x-default', url: resolveCanonicalUrl(routePath) },
+    { lang: 'vi-VN', url: resolveCanonicalUrl(viPath) },
+    { lang: 'x-default', url: resolveCanonicalUrl(basePath) },
   ]
 }
 
@@ -52,16 +51,21 @@ function resolvePageDescription(context: TransformContext): string {
     return context.pageData.description
   }
 
-  return context.pageData.relativePath.startsWith('en/')
-    ? 'Expo / React Native AMap documentation for maps, location, search, navigation, offline maps, and Web API helpers.'
-    : 'Expo / React Native 高德地图文档：地图、定位、搜索、导航、离线地图与 Web API。'
+  if (context.pageData.relativePath.startsWith('en/')) {
+    return 'Expo / React Native AMap documentation for maps, location, search, navigation, offline maps, and Web API helpers.'
+  }
+  if (context.pageData.relativePath.startsWith('vi/')) {
+    return 'Tài liệu AMap cho Expo / React Native: bản đồ, định vị, tìm kiếm, dẫn đường, bản đồ ngoại tuyến và Web API.'
+  }
+  return 'Expo / React Native 高德地图文档：地图、定位、搜索、导航、离线地图与 Web API。'
 }
 
 function createJsonLd(context: TransformContext, canonicalUrl: string): string {
   const pageTitle = context.pageData.title || 'expo-gaode-map'
   const pageDescription = resolvePageDescription(context)
   const inEnglish = context.pageData.relativePath.startsWith('en/')
-  const isHomePage = context.pageData.relativePath === 'index.md' || context.pageData.relativePath === 'en/index.md'
+  const inVietnamese = context.pageData.relativePath.startsWith('vi/')
+  const isHomePage = ['index.md', 'en/index.md', 'vi/index.md'].includes(context.pageData.relativePath)
 
   if (isHomePage) {
     return JSON.stringify(
@@ -74,7 +78,7 @@ function createJsonLd(context: TransformContext, canonicalUrl: string): string {
             name: 'expo-gaode-map',
             description: pageDescription,
             url: siteOrigin,
-            inLanguage: ['zh-CN', 'en-US'],
+            inLanguage: ['zh-CN', 'en-US', 'vi-VN'],
           },
           {
             '@type': 'SoftwareSourceCode',
@@ -113,7 +117,7 @@ function createJsonLd(context: TransformContext, canonicalUrl: string): string {
       headline: pageTitle,
       description: pageDescription,
       url: canonicalUrl,
-      inLanguage: inEnglish ? 'en-US' : 'zh-CN',
+      inLanguage: inEnglish ? 'en-US' : inVietnamese ? 'vi-VN' : 'zh-CN',
       isPartOf: {
         '@type': 'WebSite',
         '@id': `${siteOrigin}#website`,
@@ -144,7 +148,11 @@ function buildSeoHead(context: TransformContext): HeadConfig[] {
   const alternateLinks = resolveAlternateLinks(routePath)
   const pageTitle = context.pageData.title || 'expo-gaode-map'
   const pageDescription = resolvePageDescription(context)
-  const locale = context.pageData.relativePath.startsWith('en/') ? 'en_US' : 'zh_CN'
+  const locale = context.pageData.relativePath.startsWith('en/')
+    ? 'en_US'
+    : context.pageData.relativePath.startsWith('vi/')
+      ? 'vi_VN'
+      : 'zh_CN'
 
   return [
     ['link', { rel: 'canonical', href: canonicalUrl }],
@@ -338,6 +346,82 @@ export default defineConfig({
         }
       }
     },
+    vi: {
+      label: 'Tiếng Việt',
+      lang: 'vi-VN',
+      link: '/vi/',
+      title: 'expo-gaode-map',
+      description: 'Tài liệu AMap cho Expo / React Native: bản đồ, định vị, tìm kiếm, dẫn đường, bản đồ ngoại tuyến và Web API.',
+      themeConfig: {
+        nav: [
+          { text: 'Trang chủ', link: '/vi/' },
+          { text: 'Tổng quan', link: '/vi/overview' },
+          { text: 'Chọn thư viện', link: '/vi/guide/choosing-amap-library' },
+          { text: 'Bắt đầu', link: '/vi/guide/getting-started' },
+          { text: 'API', link: '/vi/api/' },
+          { text: 'Ví dụ', link: '/vi/examples/' },
+          { text: 'GitHub', link: 'https://github.com/TomWq/expo-gaode-map' }
+        ],
+        sidebar: {
+          '/vi/guide/': [
+            {
+              text: 'Hướng dẫn',
+              items: [
+                { text: 'Chọn thư viện AMap', link: '/vi/guide/choosing-amap-library' },
+                { text: 'Bắt đầu nhanh', link: '/vi/guide/getting-started' },
+                { text: 'Khởi tạo', link: '/en/guide/initialization' },
+                { text: 'Config Plugin', link: '/en/guide/config-plugin' },
+                { text: 'Xử lý lỗi', link: '/en/guide/error-handling' },
+                { text: 'Kiểm thử & QA', link: '/en/guide/testing' },
+                { text: 'Kiến trúc', link: '/en/guide/architecture' },
+                { text: 'Tìm kiếm', link: '/en/guide/search' },
+                { text: 'Dẫn đường', link: '/en/guide/navigation' },
+                { text: 'Bản đồ ngoại tuyến', link: '/en/guide/offline-map' },
+                { text: 'Web API', link: '/en/guide/web-api' }
+              ]
+            }
+          ],
+          '/vi/api/': [
+            {
+              text: 'API',
+              items: [
+                { text: 'Tổng quan API', link: '/vi/api/' },
+                { text: 'MapView', link: '/en/api/mapview' },
+                { text: 'Component & Hook', link: '/en/api/components' },
+                { text: 'Định vị', link: '/en/api/location' },
+                { text: 'Hình học', link: '/en/api/geometry' },
+                { text: 'Lớp phủ', link: '/en/api/overlays' },
+                { text: 'Kiểu dữ liệu', link: '/en/api/types' },
+                { text: 'Tìm kiếm', link: '/en/api/search' },
+                { text: 'Dẫn đường', link: '/en/api/navigation' },
+                { text: 'Bản đồ ngoại tuyến', link: '/en/api/offline-map' },
+                { text: 'Web API', link: '/en/api/web-api' }
+              ]
+            }
+          ],
+          '/vi/examples/': [
+            {
+              text: 'Ví dụ',
+              items: [
+                { text: 'Tổng quan ví dụ', link: '/vi/examples/' },
+                { text: 'Bản đồ cơ bản', link: '/en/examples/basic-map' },
+                { text: 'Theo dõi vị trí', link: '/en/examples/location-tracking' },
+                { text: 'Hình học', link: '/en/examples/geometry' },
+                { text: 'Lớp phủ', link: '/en/examples/overlays' },
+                { text: 'Tìm kiếm', link: '/en/examples/search' }
+              ]
+            }
+          ]
+        },
+        socialLinks: [
+          { icon: 'github', link: 'https://github.com/TomWq/expo-gaode-map' }
+        ],
+        footer: {
+          message: 'Phát hành theo giấy phép MIT.',
+          copyright: 'Copyright © 2024-present expo-gaode-map'
+        }
+      }
+    },
     en: {
       label: 'English',
       lang: 'en-US',
@@ -425,6 +509,22 @@ export default defineConfig({
       provider: 'local',
       options: {
         locales: {
+          vi: {
+            translations: {
+              button: {
+                buttonText: 'Tìm kiếm tài liệu',
+                buttonAriaLabel: 'Tìm kiếm tài liệu'
+              },
+              modal: {
+                noResultsText: 'Không tìm thấy kết quả phù hợp',
+                resetButtonTitle: 'Xóa nội dung tìm kiếm',
+                footer: {
+                  selectText: 'Chọn',
+                  navigateText: 'Di chuyển'
+                }
+              }
+            }
+          },
           zh: {
             translations: {
               button: {
