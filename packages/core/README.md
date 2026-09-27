@@ -32,6 +32,7 @@
 - ✅ 完整的地图功能（多种地图类型、手势控制、相机操作，离线地图,自定义地图样式）
 - ✅ 定位（支持精准/粗略定位、连续定位、单次定位、坐标转换和定位蓝点配置）
 - ✅ 丰富的覆盖物（Circle、Marker、Polyline、Polygon、HeatMap、Cluster 等）
+- ✅ GeoJSON Scene：FeatureCollection 直接渲染、LayerGroup 分组、MapCommandProxy 运行时命令队列
 - ✅ 友好的错误提示系统（详细的解决方案和文档链接）
 - ✅ 完整的 TypeScript 类型定义
 - ✅ 跨平台支持（Android、iOS）
@@ -266,6 +267,8 @@ try {
 本项目在开发过程中参考了以下优秀项目：
 
 - **[react-native-amap3d](https://github.com/qiuxiang/react-native-amap3d)** - 一个优秀的 React Native 高德地图组件
+
+- **[amapro](https://github.com/helgasoft/amapro)** - 参考其 thin-wrapper / item / command / proxy 架构思想；GeoJSON Scene 的 TypeScript 实现为本项目独立实现
 
 感谢这些开源项目的贡献者们！
 
