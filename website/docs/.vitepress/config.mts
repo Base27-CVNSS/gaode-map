@@ -1,7 +1,7 @@
 import { defineConfig, type HeadConfig, type TransformContext } from 'vitepress'
 
-const siteUrl = 'https://tomwq.github.io'
-const siteBase = '/expo-gaode-map/'
+const siteUrl = 'https://base27-cvnss.github.io'
+const siteBase = '/gaode-map/'
 const siteOrigin = `${siteUrl}${siteBase}`
 const defaultOgImage = `${siteOrigin}bg.png`
 
