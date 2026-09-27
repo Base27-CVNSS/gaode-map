@@ -60,7 +60,7 @@ describe('GeoJSON scene utilities', () => {
 
   it('collects all GeoJSON positions', () => {
     const positions = collectGeoJSONPositions(data);
-    expect(positions).toHaveLength(9);
+    expect(positions).toHaveLength(10);
     expect(positions[0]).toEqual([106.7, 10.78]);
   });
 });
