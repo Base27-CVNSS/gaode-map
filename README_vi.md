@@ -85,6 +85,17 @@ if (!ExpoGaodeMapModule.getPrivacyStatus().isReady) {
 }
 ```
 
+## GeoJSON Scene & runtime command
+
+Lấy cảm hứng kiến trúc từ `helgasoft/amapro`, core hiện có thêm lớp scene thuần TypeScript:
+
+- `GeoJSONLayer`: render Point/MultiPoint/LineString/MultiLineString/Polygon/MultiPolygon/GeometryCollection.
+- `LayerGroup`: bật/tắt một nhóm overlay và giới hạn theo zoom.
+- `MapCommandProxy`: queue lệnh camera/map trước khi MapView sẵn sàng rồi chạy tuần tự khi attach ref.
+- `flattenGeoJSON()` và `collectGeoJSONPositions()`: chuẩn hóa dữ liệu GIS trước khi đi xuống native engine.
+
+Xem [GeoJSON Scene & Map Command Proxy](./website/docs/vi/guide/geojson-scene.md).
+
 ## Tài liệu tiếng Việt
 
 - [Tổng quan](./website/docs/vi/overview.md)
