@@ -369,6 +369,7 @@ export default defineConfig({
               items: [
                 { text: 'Chọn thư viện AMap', link: '/vi/guide/choosing-amap-library' },
                 { text: 'Bắt đầu nhanh', link: '/vi/guide/getting-started' },
+                { text: 'GeoJSON Scene & Proxy', link: '/vi/guide/geojson-scene' },
                 { text: 'Khởi tạo', link: '/en/guide/initialization' },
                 { text: 'Config Plugin', link: '/en/guide/config-plugin' },
                 { text: 'Xử lý lỗi', link: '/en/guide/error-handling' },
