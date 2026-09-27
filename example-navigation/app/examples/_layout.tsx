@@ -56,7 +56,7 @@ export default function ExamplesLayout() {
       />
       {/* <Stack.Screen
         name="independent"
-        options={{ title: "独立算路避让预览", presentation: "card" }}
+        options={{ title: "Xem trước tuyến độc lập", presentation: "card" }}
       /> */}
       <Stack.Screen
         name="independent-navigation"
