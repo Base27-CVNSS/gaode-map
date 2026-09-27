@@ -19,6 +19,37 @@ export { RouteOverlay } from './components/RouteOverlay';
 export { AreaMaskOverlay } from './components/AreaMaskOverlay';
 export { useRoutePlayback } from './hooks/useRoutePlayback';
 
+// Scene/GeoJSON: engine-neutral data + runtime command proxy
+export {
+  GeoJSONLayer,
+  LayerGroup,
+  MapCommandProxy,
+  createMapCommandProxy,
+  collectGeoJSONPositions,
+  flattenGeoJSON,
+} from './scene';
+export type {
+  GeoJSONLayerProps,
+  LayerGroupProps,
+  FlattenedGeoJSONPart,
+  GeoJSONData,
+  GeoJSONFeature,
+  GeoJSONFeatureCollection,
+  GeoJSONGeometry,
+  GeoJSONGeometryCollection,
+  GeoJSONLayerStyle,
+  GeoJSONLineString,
+  GeoJSONMultiLineString,
+  GeoJSONMultiPoint,
+  GeoJSONMultiPolygon,
+  GeoJSONPoint,
+  GeoJSONPolygon,
+  GeoJSONPosition,
+  GeoJSONProperties,
+  GeoJSONSimpleGeometry,
+  GeoJSONStyleResolver,
+} from './scene';
+
 // 导出覆盖物组件
 export {
   Marker,
