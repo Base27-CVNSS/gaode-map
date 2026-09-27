@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>example-navigation</string>
+	<string>AMap Dẫn đường Demo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -48,11 +48,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>需要访问您的位置信息以提供地图服务</string>
+	<string>Ứng dụng cần quyền truy cập vị trí để cung cấp bản đồ và dẫn đường.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>需要访问您的位置信息以提供地图服务</string>
+	<string>Ứng dụng cần quyền truy cập vị trí để cung cấp bản đồ và dẫn đường.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>需要访问您的位置信息以提供地图服务</string>
+	<string>Ứng dụng cần quyền truy cập vị trí để cung cấp bản đồ và dẫn đường.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>NSSupportsLiveActivitiesFrequentUpdates</key>
