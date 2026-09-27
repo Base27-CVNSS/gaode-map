@@ -811,7 +811,7 @@ export default function RoutePickerExampleScreen() {
         const [fromMeta, waypointMeta, toMeta] = await Promise.all([
           resolvePointPresentation(currentLocation, "Vị trí của tôi"),
           resolvePointPresentation(demoScenario.waypoints[0], "Điểm trung gian mẫu"),
-          resolvePointPresentation(demoScenario.to, "演示C点"),
+          resolvePointPresentation(demoScenario.to, "Điểm đến mẫu"),
         ]);
 
         setCity(fromMeta.city || DEFAULT_CITY);
@@ -833,8 +833,8 @@ export default function RoutePickerExampleScreen() {
         waypointSeedRef.current = 2;
         setStatusText(
           currentLocation === FALLBACK_START_POINT
-            ? "定位较慢，已切到北京默认示例点位。你也可以手动选Đ点、C点和Trung gian点后直接规划。"
-            : "已填入一条演示路线。你可以直接规划，也可以替换为自己的Đ点、C点和多个Trung gian点。"
+            ? "Định vị phản hồi chậm nên đã chuyển sang điểm mẫu mặc định tại Bắc Kinh. Bạn cũng có thể chọn thủ công điểm đầu, điểm cuối và điểm trung gian rồi lập tuyến."
+            : "Đã điền một tuyến mẫu. Bạn có thể lập tuyến ngay hoặc thay bằng điểm đầu, điểm cuối và nhiều điểm trung gian của riêng mình."
         );
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
@@ -882,7 +882,7 @@ export default function RoutePickerExampleScreen() {
     setToInput(fromInput);
     setToSelection(fromSelection);
     void resetRoutePreview();
-    setStatusText("已交换Đ点和C点。重新规划后会刷新候选路线。");
+    setStatusText("Đã hoán đổi điểm đầu và điểm cuối. Hãy lập tuyến lại để cập nhật các tuyến ứng viên.");
   }, [fromInput, fromSelection, resetRoutePreview, toInput, toSelection]);
 
   const handleRouteSceneChange = React.useCallback(
@@ -955,7 +955,7 @@ export default function RoutePickerExampleScreen() {
       void resetRoutePreview();
       void focusSelectedPoint(currentLocation);
       setCity(presentation.city || city);
-      setStatusText("Đ点已更新为当前位置。");
+      setStatusText("Điểm đầu đã được cập nhật thành vị trí hiện tại.");
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       Alert.alert("Không lấy được vị trí", message);
@@ -991,7 +991,7 @@ export default function RoutePickerExampleScreen() {
 
   const planRoutes = React.useCallback(async () => {
     if (!fromSelection?.point || !toSelection?.point) {
-      Alert.alert("Thiếu thông tin", "请先选择Đ点和C点。");
+      Alert.alert("Thiếu thông tin", "Hãy chọn điểm đầu và điểm cuối trước.");
       return;
     }
 
@@ -1309,7 +1309,7 @@ export default function RoutePickerExampleScreen() {
                   }
                 }}
                 onFocus={() => setActiveFieldId("from")}
-                placeholder="输入Đ点"
+                placeholder="Nhập điểm đầu"
                 placeholderTextColor="#8aa0b8"
                 style={styles.input}
               />
@@ -1325,7 +1325,7 @@ export default function RoutePickerExampleScreen() {
                   value={waypoint.input}
                   onChangeText={(value) => setWaypointInput(waypoint.key, value)}
                   onFocus={() => setActiveFieldId(waypoint.key)}
-                  placeholder={`输入Trung gian点 ${index + 1}`}
+                  placeholder={`Nhập điểm trung gian ${index + 1}`}
                   placeholderTextColor="#8aa0b8"
                   style={styles.input}
                 />
@@ -1349,7 +1349,7 @@ export default function RoutePickerExampleScreen() {
                   }
                 }}
                 onFocus={() => setActiveFieldId("to")}
-                placeholder="输入C点"
+                placeholder="Nhập điểm cuối"
                 placeholderTextColor="#8aa0b8"
                 style={styles.input}
               />
@@ -1377,7 +1377,7 @@ export default function RoutePickerExampleScreen() {
                 disabled={waypoints.length >= MAX_WAYPOINTS}
               >
                 <FontAwesome name="plus" size={12} color="#0f3c83" />
-                <Text style={styles.secondaryActionText}>Trung gian点</Text>
+                <Text style={styles.secondaryActionText}>Điểm trung gian</Text>
               </Pressable>
 
               <Pressable
@@ -1396,8 +1396,8 @@ export default function RoutePickerExampleScreen() {
           {activeFieldId && (tipLoading || tips.length > 0 || activeKeyword.trim().length >= 2) ? (
             <View style={styles.suggestionCard}>
               <View style={styles.suggestionHeader}>
-                <Text style={styles.suggestionTitle}>地点建议</Text>
-                {tipLoading ? <Text style={styles.suggestionHint}>搜索中...</Text> : null}
+                <Text style={styles.suggestionTitle}>Gợi ý địa điểm</Text>
+                {tipLoading ? <Text style={styles.suggestionHint}>Đang tìm kiếm...</Text> : null}
               </View>
 
               {tips.length > 0 ? (
@@ -1441,7 +1441,7 @@ export default function RoutePickerExampleScreen() {
           <View style={styles.routeSheet}>
             <View style={styles.routeSheetHeader}>
               <View style={styles.inlineStatus}>
-                <Text style={styles.inlineStatusLabel}>状态</Text>
+                <Text style={styles.inlineStatusLabel}>Trạng thái</Text>
                 <Text numberOfLines={1} style={styles.inlineStatusText}>
                   {statusText}
                 </Text>
@@ -1466,13 +1466,13 @@ export default function RoutePickerExampleScreen() {
                     <Text
                       style={[styles.compactModeText, requestedNaviType === 1 && styles.modeChipTextActive]}
                     >
-                      模拟
+                      Mô phỏng
                     </Text>
                   </Pressable>
                 </View>
               ) : (
                 <View style={styles.previewOnlyHint}>
-                  <Text style={styles.previewOnlyHintText}>当前模式先提供预览</Text>
+                  <Text style={styles.previewOnlyHintText}>Chế độ hiện tại mới hỗ trợ xem trước</Text>
                 </View>
               )}
             </View>
@@ -1518,7 +1518,7 @@ export default function RoutePickerExampleScreen() {
               <View style={styles.routePlaceholder}>
                 <Text style={styles.routePlaceholderTitle}>Các tuyến ứng viên sẽ hiển thị tại đây</Text>
                 <Text style={styles.routePlaceholderBody}>
-                  当前页面支持Đ点、C点和多个Trung gian点输入。规划完成后，下方会展示最多 3 条可切换路线。
+                  当前页面支持Đ点、C点和多个Điểm trung gian输入。规划完成后，下方会展示最多 3 条可切换路线。
                 </Text>
               </View>
             )}
@@ -1526,7 +1526,7 @@ export default function RoutePickerExampleScreen() {
             <View style={styles.footerRow}>
               <View style={styles.routeMetaBlock}>
                 <Text style={styles.routeMetaTitle}>
-                  {selectedRoute ? `已选 ${buildRouteLabel(
+                  {selectedRoute ? `Đã chọn ${buildRouteLabel(
                     selectedRoute,
                     selectedRouteIndex,
                     routeResult?.mainPathIndex ?? 0,
@@ -1554,7 +1554,7 @@ export default function RoutePickerExampleScreen() {
                             ? "Có thể tiếp tục vào dẫn đường nhúng ngay trên trang"
                             : "Trang hiện hỗ trợ xem trước; luồng dẫn đường sẽ được hoàn thiện sau",
                         ].join(" · ")
-                    : "请先Lập tuyến，然后选择一条方案Bắt đầu dẫn đường。"}
+                    : "Hãy lập tuyến trước, sau đó chọn một phương án để bắt đầu dẫn đường."}
                 </Text>
               </View>
 
