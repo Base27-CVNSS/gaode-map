@@ -14,6 +14,8 @@ amapro keeps its API intentionally small while forwarding data, layers and runti
 | overlay grouping | `LayerGroup` |
 | proxy runtime commands | `MapCommandProxy` |
 | bounds from layer data | `collectGeoJSONPositions` + `fitToCoordinates` |
+| remote GeoJSON source | `loadGeoJSON` with injectable fetcher |
+| view animation / flyover | `playCameraTimeline` + `CameraTimelineController` |
 | thin public wrapper | scene API re-exported from core index |
 
 ## Deliberately not copied
@@ -26,7 +28,7 @@ amapro keeps its API intentionally small while forwarding data, layers and runti
 
 ## Next phases
 
-### External tiles
+### Phase 2 — External tiles
 URL tile template, WMTS adapter, image overlay, zoom range, opacity and explicit CRS metadata.
 
 ### Scene sources
