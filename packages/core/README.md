@@ -32,7 +32,7 @@
 - ✅ 完整的地图功能（多种地图类型、手势控制、相机操作，离线地图,自定义地图样式）
 - ✅ 定位（支持精准/粗略定位、连续定位、单次定位、坐标转换和定位蓝点配置）
 - ✅ 丰富的覆盖物（Circle、Marker、Polyline、Polygon、HeatMap、Cluster 等）
-- ✅ GeoJSON Scene：FeatureCollection 直接渲染、LayerGroup 分组、MapCommandProxy 运行时命令队列
+- ✅ GeoJSON Scene：FeatureCollection 直接渲染、LayerGroup 分组、MapCommandProxy 运行时命令队列、远程 GeoJSON Source、Camera Timeline/Flyover
 - ✅ 友好的错误提示系统（详细的解决方案和文档链接）
 - ✅ 完整的 TypeScript 类型定义
 - ✅ 跨平台支持（Android、iOS）
