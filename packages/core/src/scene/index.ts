@@ -6,6 +6,23 @@ export type { LayerGroupProps } from './LayerGroup';
 
 export { MapCommandProxy, createMapCommandProxy } from './MapCommandProxy';
 
+export {
+  CameraTimelineController,
+  playCameraTimeline,
+} from './CameraTimeline';
+export type {
+  CameraKeyframe,
+  CameraMoveTarget,
+  PlayCameraTimelineOptions,
+} from './CameraTimeline';
+
+export { isGeoJSONData, loadGeoJSON } from './GeoJSONSource';
+export type {
+  GeoJSONFetcher,
+  GeoJSONResponseLike,
+  LoadGeoJSONOptions,
+} from './GeoJSONSource';
+
 export { collectGeoJSONPositions, flattenGeoJSON } from './geojson';
 
 export type {
