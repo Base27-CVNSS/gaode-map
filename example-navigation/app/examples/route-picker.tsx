@@ -1518,7 +1518,7 @@ export default function RoutePickerExampleScreen() {
               <View style={styles.routePlaceholder}>
                 <Text style={styles.routePlaceholderTitle}>Các tuyến ứng viên sẽ hiển thị tại đây</Text>
                 <Text style={styles.routePlaceholderBody}>
-                  当前页面支持Đ点、C点和多个Điểm trung gian输入。规划完成后，下方会展示最多 3 条可切换路线。
+                  Trang này hỗ trợ điểm đầu, điểm cuối và nhiều điểm trung gian. Sau khi lập tuyến, tối đa 3 tuyến có thể chuyển đổi sẽ hiển thị bên dưới.
                 </Text>
               </View>
             )}
