@@ -26,7 +26,7 @@ const EXAMPLE_SECTIONS: ExampleSection[] = [
       {
         href: "/examples/official",
         title: "Dẫn đường chính thức dạng black-box",
-        body: "Kiểm tra `openOfficialNaviPage`，可直接调起官方路线页或官方导航页。",
+        body: "Kiểm tra `openOfficialNaviPage`, có thể mở trực tiếp trang tuyến hoặc trang dẫn đường chính thức của AMap.",
         outcome: "Trang cuối: trang tuyến / dẫn đường chính thức",
       },
     ],
@@ -39,37 +39,37 @@ const EXAMPLE_SECTIONS: ExampleSection[] = [
         href: "/examples/quick-start",
         title: "Kiểm tra tích hợp dẫn đường nhanh",
         body: "Luồng ngắn nhất để kiểm tra privacy consent, khởi tạo SDK, lấy vị trí và khởi động dẫn đường.",
-        outcome: "最终页: 固定Dẫn đường nhúng页",
+        outcome: "Trang cuối: dẫn đường nhúng cố định",
       },
       {
         href: "/examples/official-embedded",
         title: "UI dẫn đường chính thức nhúng",
         body: "Chỉ dùng `ExpoGaodeMapNaviView` mà không chồng HUD tùy chỉnh; dùng để quan sát UI nhúng chính thức.",
-        outcome: "最终页: 官方Dẫn đường nhúng页",
+        outcome: "Trang cuối: dẫn đường nhúng chính thức",
       },
       {
         href: "/examples/current-location",
         title: "Dẫn đường từ vị trí hiện tại",
         body: "Không truyền điểm đầu; dùng vị trí hiện tại để dẫn đường tới đích.",
-        outcome: "最终页: 固定Dẫn đường nhúng页",
+        outcome: "Trang cuối: dẫn đường nhúng cố định",
       },
       {
         href: "/examples/independent-navigation",
         title: "Dẫn đường với lập tuyến độc lập",
-        body: "先独立算路，再从候选路线里选一条启动导航，重点Kiểm tra `startNavigationWithIndependentPath`。",
-        outcome: "最终页: 独立路径Dẫn đường nhúng页",
+        body: "Tính tuyến độc lập trước, sau đó chọn một tuyến ứng viên để bắt đầu dẫn đường; trọng tâm là kiểm tra `startNavigationWithIndependentPath`.",
+        outcome: "Trang cuối: dẫn đường nhúng từ tuyến độc lập",
       },
       {
         href: "/examples/route-picker",
         title: "Trang chọn tuyến tùy chỉnh",
         body: "Hỗ trợ điểm đầu, điểm cuối, nhiều điểm trung gian và nhiều tuyến ứng viên trước khi vào dẫn đường.",
-        outcome: "最终页: Trang chọn tuyến tùy chỉnh -> Dẫn đường nhúng页",
+        outcome: "Trang cuối: chọn tuyến tùy chỉnh → dẫn đường nhúng",
       },
       {
         href: "/examples/ui-props",
         title: "Giao diện dẫn đường UI tùy chỉnh",
         body: "Tập trung vào việc tự vẽ UI dựa trên `ExpoGaodeMapNaviView` để tạo HUD, HUD làn đường và thanh tình trạng giao thông.",
-        outcome: "最终页: 自定义Dẫn đường nhúng页",
+        outcome: "Trang cuối: dẫn đường nhúng UI tùy chỉnh",
       },
     ],
   },
@@ -81,13 +81,13 @@ const EXAMPLE_SECTIONS: ExampleSection[] = [
         href: "/examples/follow-web",
         title: "Theo tuyến Web API",
         body: "Tính tuyến bằng Web API trước, sau đó khớp gần đúng sang tuyến native có thể dẫn đường.",
-        outcome: "最终页: 匹配结果 + Dẫn đường nhúng页",
+        outcome: "Trang cuối: kết quả khớp + dẫn đường nhúng",
       },
       {
         href: "/examples/events",
         title: "Bảng sự kiện dẫn đường",
         body: "Theo dõi theo thời gian thực giọng nói, cập nhật thông tin, tính lại tuyến và sự kiện tới đích để tích hợp/gỡ lỗi.",
-        outcome: "最终页: 事件观测页 + Dẫn đường nhúng页",
+        outcome: "Trang cuối: bảng quan sát sự kiện + dẫn đường nhúng",
       },
     ],
   },
@@ -118,7 +118,7 @@ export default function ExampleCenterScreen() {
         <View style={styles.hero}>
           <Text style={styles.title}>Trung tâm ví dụ</Text>
           <Text style={styles.subtitle}>
-            现在按“最终会打开什么页面”来分组。这样你能先判断它到底是Chính thức / black-box、官方嵌入式，还是自定义Dẫn đường nhúng，而不是只看名字猜。
+            Các ví dụ được nhóm theo màn hình cuối cùng sẽ mở. Nhờ vậy bạn có thể phân biệt rõ luồng chính thức dạng black-box, UI nhúng chính thức hay dẫn đường nhúng tùy chỉnh thay vì đoán qua tên.
           </Text>
         </View>
 
@@ -141,18 +141,18 @@ export default function ExampleCenterScreen() {
 
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Thứ tự nên xem</Text>
-          <Text style={styles.item}>1. 先看“Kiểm tra tích hợp dẫn đường nhanh”，确认 SDK、隐私和定位链路没问题。</Text>
-          <Text style={styles.item}>2. 如果你要官方页，直接看“Dẫn đường chính thức dạng black-box”。</Text>
-          <Text style={styles.item}>3. 如果你要自己做导航页，优先看“Giao diện dẫn đường UI tùy chỉnh”和“Trang chọn tuyến tùy chỉnh”。</Text>
-          <Text style={styles.item}>4. 如果你要研究独立路径组，再看“Dẫn đường với lập tuyến độc lập”。</Text>
+          <Text style={styles.item}>1. Xem “Kiểm tra tích hợp dẫn đường nhanh” để xác nhận SDK, privacy flow và định vị hoạt động đúng.</Text>
+          <Text style={styles.item}>2. Nếu cần trang chính thức, xem “Dẫn đường chính thức dạng black-box”.</Text>
+          <Text style={styles.item}>3. Nếu muốn tự xây UI dẫn đường, ưu tiên “Giao diện dẫn đường UI tùy chỉnh” và “Trang chọn tuyến tùy chỉnh”.</Text>
+          <Text style={styles.item}>4. Nếu cần nghiên cứu nhóm tuyến độc lập, xem “Dẫn đường với lập tuyến độc lập”.</Text>
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>当前工程已接入内容</Text>
-          <Text style={styles.item}>• 本地依赖：`file:../packages/navigation`</Text>
+          <Text style={styles.cardTitle}>Các thành phần đã tích hợp</Text>
+          <Text style={styles.item}>• Phụ thuộc cục bộ: `file:../packages/navigation`</Text>
           <Text style={styles.item}>• Config Plugin：`expo-gaode-map-navigation`</Text>
-          <Text style={styles.item}>• iOS 后台定位：已在插件配置里开启</Text>
-          <Text style={styles.item}>• 快速接入验证页：`app/examples/quick-start.tsx`</Text>
+          <Text style={styles.item}>• Định vị nền iOS: đã bật trong cấu hình plugin</Text>
+          <Text style={styles.item}>• Trang kiểm tra tích hợp nhanh: `app/examples/quick-start.tsx`</Text>
         </View>
 
         <Pressable style={styles.button} onPress={openDocs}>
