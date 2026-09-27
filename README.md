@@ -32,7 +32,7 @@ Read more: [Choosing an AMap Library](https://TomWq.github.io/expo-gaode-map/gui
 
 <div align="center">
 
-[🇨🇳 中文文档](README_zh.md)
+[🇨🇳 中文文档](README_zh.md) · [🇻🇳 Tiếng Việt](README_vi.md)
 
 </div>
 
