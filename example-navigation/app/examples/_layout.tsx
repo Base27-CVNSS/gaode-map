@@ -8,7 +8,7 @@ export default function ExamplesLayout() {
   return (
     <Stack
       screenOptions={{
-        headerBackTitle: "返回",
+        headerBackTitle: "Quay lại",
         headerLeft: () => (
           <Pressable
             onPress={() => router.back()}
@@ -36,7 +36,7 @@ export default function ExamplesLayout() {
                 fontWeight: "500",
               }}
             >
-              返回
+              Quay lại
             </Text>
           </Pressable>
         ),
@@ -44,15 +44,15 @@ export default function ExamplesLayout() {
     >
       <Stack.Screen
         name="quick-start"
-        options={{ title: "快速导航接入验证", }}
+        options={{ title: "Kiểm tra tích hợp dẫn đường nhanh", }}
       />
       <Stack.Screen
         name="official"
-        options={{ title: "官方黑盒导航", }}
+        options={{ title: "Dẫn đường chính thức dạng black-box", }}
       />
       <Stack.Screen
         name="official-embedded"
-        options={{ title: "纯官方嵌入式 UI",}}
+        options={{ title: "UI dẫn đường chính thức nhúng",}}
       />
       {/* <Stack.Screen
         name="independent"
@@ -60,27 +60,27 @@ export default function ExamplesLayout() {
       /> */}
       <Stack.Screen
         name="independent-navigation"
-        options={{ title: "独立路径规划导航",  }}
+        options={{ title: "Dẫn đường với lập tuyến độc lập",  }}
       />
       <Stack.Screen
         name="follow-web"
-        options={{ title: "跟随 Web 路线", }}
+        options={{ title: "Theo tuyến Web API", }}
       />
       <Stack.Screen
         name="current-location"
-        options={{ title: "当前位置直达导航", }}
+        options={{ title: "Dẫn đường từ vị trí hiện tại", }}
       />
       <Stack.Screen
         name="route-picker"
-        options={{ title: "自定义路线选择页", headerShown: false }}
+        options={{ title: "Trang chọn tuyến tùy chỉnh", headerShown: false }}
       />
       <Stack.Screen
         name="events"
-        options={{ title: "导航事件面板", }}
+        options={{ title: "Bảng sự kiện dẫn đường", }}
       />
       <Stack.Screen
         name="ui-props"
-        options={{ title: "自定义 UI 导航界面", }}
+        options={{ title: "Giao diện dẫn đường UI tùy chỉnh", }}
       />
     </Stack>
   );
