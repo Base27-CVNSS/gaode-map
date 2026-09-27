@@ -57,9 +57,9 @@ type ExampleDefinition = {
 };
 
 /**
- * 示例目录。
- * 目标是把散落的 example 页面统一收口成一个可浏览入口，
- * 便于快速找到某个 API 对应的真实用法。
+ * Danh mục ví dụ.
+ * Gom các trang example rời rạc về một điểm truy cập có thể duyệt,
+ * giúp tìm nhanh cách dùng thực tế tương ứng với từng API.
  */
 const EXAMPLES: ExampleDefinition[] = [
   {
@@ -126,7 +126,7 @@ const EXAMPLES: ExampleDefinition[] = [
     id: 'rental-map-label',
     title: 'Nhãn giá bất động sản trên bản đồ',
     description:
-      '复现“气泡价签/列表标签”两种地图标记样式，支持随缩放自动切换和手动切换。',
+      'Tái hiện hai kiểu Marker dạng nhãn giá bong bóng và nhãn danh sách, hỗ trợ tự chuyển theo mức zoom hoặc chuyển thủ công.',
     category: 'overlay',
     component: RentalMapLabelExample,
   },
@@ -192,7 +192,7 @@ const EXAMPLES: ExampleDefinition[] = [
   {
     id: 'search-module',
     title: 'Module tìm kiếm',
-    description: '演示Module tìm kiếm调用、结果查看和调试日志。',
+    description: 'Minh họa gọi module tìm kiếm, xem kết quả và log gỡ lỗi.',
     category: 'web-api',
     component: SearchModuleTest,
   },
@@ -267,17 +267,17 @@ export default function ExampleHub() {
         <View style={styles.hero}>
           <Text style={styles.title}>Trung tâm ví dụ expo-gaode-map</Text>
           <Text style={styles.subtitle}>
-            这里把当前 example 工程里的主要示例按能力分类整理好了，优先把最常用的
-            API 拆成独立入口，减少从大杂烩页面里翻代码的成本。
+            Các ví dụ chính trong project example được nhóm theo năng lực, ưu tiên tách các
+            API thường dùng thành từng lối vào riêng để giảm thời gian dò mã trong trang tổng hợp.
           </Text>
         </View>
 
         <View style={styles.noticeCard}>
           <Text style={styles.noticeTitle}>Ranh giới giữa core và navigation</Text>
           <Text style={styles.noticeText}>
-            `core` 和 `navigation` 里的地图保持两套实现，不合并原生 MapView。
-            当前目录优先展示 `core + web-api` 这条链路；导航 SDK
-            相关示例仍建议放在独立 navigation 工程里查看。
+            Bản đồ trong `core` và `navigation` vẫn là hai implementation riêng, không gộp native MapView.
+            Danh mục này ưu tiên luồng `core + web-api`; các ví dụ liên quan navigation SDK
+            nên tiếp tục xem trong project navigation riêng.
           </Text>
         </View>
 
