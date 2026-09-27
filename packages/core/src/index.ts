@@ -27,6 +27,10 @@ export {
   createMapCommandProxy,
   collectGeoJSONPositions,
   flattenGeoJSON,
+  isGeoJSONData,
+  loadGeoJSON,
+  CameraTimelineController,
+  playCameraTimeline,
 } from './scene';
 export type {
   GeoJSONLayerProps,
@@ -48,6 +52,12 @@ export type {
   GeoJSONProperties,
   GeoJSONSimpleGeometry,
   GeoJSONStyleResolver,
+  GeoJSONFetcher,
+  GeoJSONResponseLike,
+  LoadGeoJSONOptions,
+  CameraKeyframe,
+  CameraMoveTarget,
+  PlayCameraTimelineOptions,
 } from './scene';
 
 // 导出覆盖物组件
