@@ -21,6 +21,16 @@ description: Chỉ mục API tiếng Việt cho MapView, định vị, lớp ph�
 - [Lớp phủ — English](/en/api/overlays)
 - [Kiểu dữ liệu — English](/en/api/types)
 
+## Scene & GeoJSON
+
+- `GeoJSONLayer` — render GeoJSON bằng overlay native.
+- `LayerGroup` — nhóm và bật/tắt lớp logic.
+- `MapCommandProxy` — queue lệnh trước khi MapView sẵn sàng.
+- `loadGeoJSON` — nạp GeoJSON từ URL/fetcher tùy biến.
+- `playCameraTimeline` — flyover theo camera keyframe.
+
+[Xem hướng dẫn GeoJSON Scene & Proxy](/vi/guide/geojson-scene)
+
 ## API mở rộng
 
 - [Tìm kiếm — English](/en/api/search)
