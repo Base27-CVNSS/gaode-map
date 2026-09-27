@@ -12,6 +12,7 @@ import {
   LayerGroup,
   MapUI,
   MapView,
+  playCameraTimeline,
   type GeoJSONFeatureCollection,
   type MapViewRef,
 } from 'expo-gaode-map';
@@ -145,6 +146,44 @@ export default function GeoJSONSceneExample() {
               >
                 <Text style={styles.buttonText}>Fit GeoJSON</Text>
               </Pressable>
+              <Pressable
+                style={styles.button}
+                onPress={() =>
+                  void playCameraTimeline(proxy, [
+                    {
+                      camera: {
+                        target: { latitude: 10.7769, longitude: 106.7009 },
+                        zoom: 12,
+                        tilt: 20,
+                        bearing: 0,
+                      },
+                      duration: 650,
+                      hold: 120,
+                    },
+                    {
+                      camera: {
+                        target: { latitude: 10.7828, longitude: 106.7116 },
+                        zoom: 15,
+                        tilt: 50,
+                        bearing: 35,
+                      },
+                      duration: 850,
+                      hold: 180,
+                    },
+                    {
+                      camera: {
+                        target: { latitude: 10.7715, longitude: 106.6908 },
+                        zoom: 14,
+                        tilt: 35,
+                        bearing: 320,
+                      },
+                      duration: 850,
+                    },
+                  ])
+                }
+              >
+                <Text style={styles.buttonText}>Flyover</Text>
+              </Pressable>
             </View>
           </View>
         </View>
@@ -166,7 +205,7 @@ const styles = StyleSheet.create({
   },
   title: { color: '#fff', fontSize: 18, fontWeight: '800' },
   body: { marginTop: 6, color: '#CBD5E1', fontSize: 13 },
-  actions: { marginTop: 12, flexDirection: 'row', gap: 10 },
+  actions: { marginTop: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   button: {
     borderRadius: 12,
     paddingHorizontal: 14,
