@@ -3,12 +3,36 @@ import { computed } from 'vue'
 import { withBase } from 'vitepress'
 
 const props = withDefaults(defineProps<{
-  locale?: 'zh' | 'en'
+  locale?: 'zh' | 'en' | 'vi'
 }>(), {
   locale: 'zh'
 })
 
 const copy = computed(() => {
+  if (props.locale === 'vi') {
+    return {
+      kicker: 'Bộ AMap chuyên nghiệp cho Expo / React Native',
+      title: 'expo-gaode-map',
+      subtitle: 'Thư viện AMap cho Expo / React Native',
+      lead:
+        'Một bộ công cụ thống nhất cho bản đồ, định vị, tìm kiếm POI, dẫn đường, bản đồ ngoại tuyến và Web API trong ứng dụng Expo / React Native.',
+      primary: 'Mở tài liệu',
+      secondary: 'Bắt đầu nhanh',
+      aiAction: 'Tích hợp bằng AI',
+      route1Title: 'Tổng quan tài liệu',
+      route1Text: 'Nắm nhanh cấu trúc gói, khả năng chính, yêu cầu nền tảng và cách lựa chọn module phù hợp.',
+      route2Title: 'Bắt đầu nhanh',
+      route2Text: 'Đi từ cài đặt, cấu hình khóa AMap và quyền riêng tư đến màn hình bản đồ đầu tiên.',
+      route3Title: 'Ví dụ & API',
+      route3Text: 'Tra cứu mẫu triển khai thực tế, định nghĩa API và cách dùng từng module.',
+      tags: ['Bản đồ', 'Định vị', 'Tìm kiếm', 'Dẫn đường', 'Ngoại tuyến', 'Web API'],
+      overviewLink: 'overview',
+      gettingStartedLink: 'guide/getting-started',
+      skillLink: 'guide/getting-started#tich-hop-voi-ai',
+      examplesLink: 'examples/'
+    }
+  }
+
   if (props.locale === 'en') {
     return {
    
@@ -58,7 +82,7 @@ const copy = computed(() => {
   }
 })
 
-const base = props.locale === 'en' ? '/en/' : '/'
+const base = props.locale === 'en' ? '/en/' : props.locale === 'vi' ? '/vi/' : '/'
 const resolve = (path: string) => withBase(`${base}${path}`)
 </script>
 
@@ -85,14 +109,14 @@ const resolve = (path: string) => withBase(`${base}${path}`)
             <a class="landing-button landing-button--secondary" href="https://github.com/TomWq/expo-gaode-map">GitHub</a>
           </div>
 
-          <div class="landing-tags" :aria-label="locale === 'en' ? 'Feature tags' : '功能标签'">
+          <div class="landing-tags" :aria-label="locale === 'en' ? 'Feature tags' : locale === 'vi' ? 'Nhóm tính năng' : '功能标签'">
             <span v-for="tag in copy.tags" :key="tag">{{ tag }}</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="landing-routes" :aria-label="locale === 'en' ? 'Entry points' : '入口导航'">
+    <section class="landing-routes" :aria-label="locale === 'en' ? 'Entry points' : locale === 'vi' ? 'Điểm truy cập nhanh' : '入口导航'">
       <a class="landing-route" :href="resolve(copy.overviewLink)">
         <span class="landing-route__index">01</span>
         <h2>{{ copy.route1Title }}</h2>
