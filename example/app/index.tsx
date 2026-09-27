@@ -48,7 +48,7 @@ export default function ExampleCenterScreen() {
         <View style={styles.hero}>
           <Text style={styles.title}>Trung tâm ví dụ</Text>
           <Text style={styles.subtitle}>
-            现在按场景和结果分组。你可以先判断会看到什么，再跳转到具体示例，不用在单页大列表里来回找。
+            Các ví dụ được nhóm theo kịch bản và kết quả đầu ra. Bạn có thể biết trước mình sẽ thấy gì rồi mới mở ví dụ chi tiết, không phải dò trong một danh sách dài.
           </Text>
         </View>
 
@@ -71,10 +71,10 @@ export default function ExampleCenterScreen() {
 
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Thứ tự nên xem</Text>
-          <Text style={styles.item}>1. 先看“Quyền riêng tư & khởi tạo”，确认 SDK 和权限链路。</Text>
-          <Text style={styles.item}>2. 再看“Chức năng bản đồ cơ bản”与“Playground lớp phủ cơ bản”。</Text>
-          <Text style={styles.item}>3. 需要深度调试时进入“Sự kiện gỡ lỗi bản đồ”和“Trang tổng hợp cũ”。</Text>
-          <Text style={styles.item}>4. 只验证接口时直接看“Web API & tìm kiếm”。</Text>
+          <Text style={styles.item}>1. Xem “Quyền riêng tư & khởi tạo” để xác nhận SDK và chuỗi quyền hoạt động đúng.</Text>
+          <Text style={styles.item}>2. Tiếp theo xem “Chức năng bản đồ cơ bản” và “Playground lớp phủ cơ bản”.</Text>
+          <Text style={styles.item}>3. Khi cần gỡ lỗi sâu, mở “Sự kiện gỡ lỗi bản đồ” và “Trang tổng hợp cũ”.</Text>
+          <Text style={styles.item}>4. Nếu chỉ kiểm tra API, vào thẳng “Web API & tìm kiếm”.</Text>
         </View>
 
         <Pressable style={styles.button} onPress={openDocs}>
