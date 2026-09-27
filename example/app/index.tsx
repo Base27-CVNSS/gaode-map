@@ -46,7 +46,7 @@ export default function ExampleCenterScreen() {
         contentContainerStyle={styles.content}
       >
         <View style={styles.hero}>
-          <Text style={styles.title}>示例中心</Text>
+          <Text style={styles.title}>Trung tâm ví dụ</Text>
           <Text style={styles.subtitle}>
             现在按场景和结果分组。你可以先判断会看到什么，再跳转到具体示例，不用在单页大列表里来回找。
           </Text>
@@ -63,22 +63,22 @@ export default function ExampleCenterScreen() {
         ))}
 
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>当前环境变量</Text>
-          <Text style={styles.item}>Android Key: {EXAMPLE_ANDROID_KEY ? '已配置' : '未配置'}</Text>
-          <Text style={styles.item}>iOS Key: {EXAMPLE_IOS_KEY ? '已配置' : '未配置'}</Text>
-          <Text style={styles.item}>Web Key: {EXAMPLE_WEB_API_KEY ? '已配置' : '未配置'}</Text>
+          <Text style={styles.cardTitle}>Biến môi trường hiện tại</Text>
+          <Text style={styles.item}>Android Key: {EXAMPLE_ANDROID_KEY ? 'Đã cấu hình' : 'Chưa cấu hình'}</Text>
+          <Text style={styles.item}>iOS Key: {EXAMPLE_IOS_KEY ? 'Đã cấu hình' : 'Chưa cấu hình'}</Text>
+          <Text style={styles.item}>Web Key: {EXAMPLE_WEB_API_KEY ? 'Đã cấu hình' : 'Chưa cấu hình'}</Text>
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>建议阅读顺序</Text>
-          <Text style={styles.item}>1. 先看“隐私与初始化”，确认 SDK 和权限链路。</Text>
-          <Text style={styles.item}>2. 再看“地图基础能力”与“基础覆盖物 Playground”。</Text>
-          <Text style={styles.item}>3. 需要深度调试时进入“地图调试事件”和“历史综合页”。</Text>
-          <Text style={styles.item}>4. 只验证接口时直接看“Web API 与搜索”。</Text>
+          <Text style={styles.cardTitle}>Thứ tự nên xem</Text>
+          <Text style={styles.item}>1. 先看“Quyền riêng tư & khởi tạo”，确认 SDK 和权限链路。</Text>
+          <Text style={styles.item}>2. 再看“Chức năng bản đồ cơ bản”与“Playground lớp phủ cơ bản”。</Text>
+          <Text style={styles.item}>3. 需要深度调试时进入“Sự kiện gỡ lỗi bản đồ”和“Trang tổng hợp cũ”。</Text>
+          <Text style={styles.item}>4. 只验证接口时直接看“Web API & tìm kiếm”。</Text>
         </View>
 
         <Pressable style={styles.button} onPress={openDocs}>
-          <Text style={styles.buttonText}>打开完整文档</Text>
+          <Text style={styles.buttonText}>Mở tài liệu đầy đủ</Text>
         </Pressable>
       </ScrollView>
       <StatusBar style='dark' />
