@@ -16,6 +16,47 @@ export { default as MapView } from './ExpoGaodeMapView';
 export { useMap } from './components/MapContext';
 export { MapUI } from './components/MapUI';
 
+// Scene/GeoJSON parity with expo-gaode-map core
+export {
+  GeoJSONLayer,
+  LayerGroup,
+  MapCommandProxy,
+  createMapCommandProxy,
+  collectGeoJSONPositions,
+  flattenGeoJSON,
+  isGeoJSONData,
+  loadGeoJSON,
+  CameraTimelineController,
+  playCameraTimeline,
+} from './scene';
+export type {
+  GeoJSONLayerProps,
+  LayerGroupProps,
+  FlattenedGeoJSONPart,
+  GeoJSONData,
+  GeoJSONFeature,
+  GeoJSONFeatureCollection,
+  GeoJSONGeometry,
+  GeoJSONGeometryCollection,
+  GeoJSONLayerStyle,
+  GeoJSONLineString,
+  GeoJSONMultiLineString,
+  GeoJSONMultiPoint,
+  GeoJSONMultiPolygon,
+  GeoJSONPoint,
+  GeoJSONPolygon,
+  GeoJSONPosition,
+  GeoJSONProperties,
+  GeoJSONSimpleGeometry,
+  GeoJSONStyleResolver,
+  GeoJSONFetcher,
+  GeoJSONResponseLike,
+  LoadGeoJSONOptions,
+  CameraKeyframe,
+  CameraMoveTarget,
+  PlayCameraTimelineOptions,
+} from './scene';
+
 // 导出覆盖物组件
 export {
   Marker,
