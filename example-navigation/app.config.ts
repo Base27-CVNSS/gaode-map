@@ -4,7 +4,7 @@ const androidKey = "0957076b4e77112c7c194a4ebf6c03e0";
 const iosKey = "7acecfa22e09c31c0ff3db8e0c7b8679"
 
 const config: ExpoConfig = {
-  name: "example-navigation",
+  name: "AMap Dẫn đường Demo",
   slug: "example-navigation",
   version: "1.0.0",
   orientation: "portrait",
