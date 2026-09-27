@@ -8,6 +8,7 @@ import DynamicRouteTrackingExample from './DynamicRouteTrackingExample';
 import EnterpriseCheckInExample from './EnterpriseCheckInExample';
 import LegacyPlaygroundExample from './App';
 import GeometryUtilsExample from './GeometryUtilsExample';
+import GeoJSONSceneExample from './GeoJSONSceneExample';
 import InputTipsExample from './InputTipsExample';
 
 import MapBasicsExample from './MapBasicsExample';
@@ -152,6 +153,15 @@ export const EXAMPLE_REGISTRY: Record<string, ExampleDefinition> = {
     description: 'Gắn 50–200 Marker tùy chỉnh, đổi style children hàng loạt và quan sát độ giật cùng áp lực bộ nhớ.',
     outcome: 'Mở trang kiểm thử hiệu năng Marker',
     component: MarkerStressTestExample,
+    navigationBarColor: EXAMPLE_DARK_BACKGROUND,
+  },
+  'geojson-scene': {
+    id: 'geojson-scene',
+    title: 'GeoJSON Scene & Command Proxy',
+    description: 'Render FeatureCollection trực tiếp, nhóm lớp và điều khiển MapView bằng hàng đợi lệnh type-safe.',
+    outcome: 'Mở demo GeoJSON + LayerGroup + MapCommandProxy',
+    component: GeoJSONSceneExample,
+    immersive: true,
     navigationBarColor: EXAMPLE_DARK_BACKGROUND,
   },
   'geometry-utils': {
@@ -347,6 +357,7 @@ export const EXAMPLE_SECTIONS: ExampleSection[] = [
       'rental-map-label',
      
       'multi-format',
+      'geojson-scene',
       'aoi-mask',
     ],
   },
